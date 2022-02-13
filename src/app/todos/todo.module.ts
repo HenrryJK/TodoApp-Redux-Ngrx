@@ -7,11 +7,14 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoPageComponent } from './todo-page/todo-page.component';
 
 
+// Formulario
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [TodoAddComponent, TodoFooterComponent, TodoItemComponent, TodoListComponent, TodoPageComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   // aqui declaramos un export para que el elemento de TodoPage o la pagina principal se pueda mostrar , por eso se exportan
   exports:[
