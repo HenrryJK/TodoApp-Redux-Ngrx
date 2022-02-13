@@ -12,6 +12,10 @@ import { TodoPageComponent } from './todo-page/todo-page.component';
   declarations: [TodoAddComponent, TodoFooterComponent, TodoItemComponent, TodoListComponent, TodoPageComponent],
   imports: [
     CommonModule
+  ],
+  // aqui declaramos un export para que el elemento de TodoPage o la pagina principal se pueda mostrar , por eso se exportan
+  exports:[
+    TodoPageComponent
   ]
 })
 export class TodoModule { }
