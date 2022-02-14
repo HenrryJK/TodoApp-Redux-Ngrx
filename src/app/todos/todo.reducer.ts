@@ -6,7 +6,10 @@ import { crear } from './todo.actions';
 // export const estadoInicial:Todo[] = [];
 
 export const estadoInicial:Todo[] = [
-  new Todo('Salvar al mundo')
+  new Todo('Arreglar la antena de Comunicaciones'),
+  new Todo('Realizar intervencion en ViseGrad'),
+  new Todo('Realizar evacuacion en New Alejandria'),
+  new Todo('Ir a Pillar of Authun.'),
 ];
 const _todoReducer = createReducer(
   estadoInicial,
