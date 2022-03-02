@@ -24,6 +24,7 @@ export class TodoAddComponent implements OnInit {
     if (this.txtInput.invalid) {
       return;
     }
+    // esta accion va a permitir q se guarde en el arreglo todo la informacion que enviemos en la caja de texto de la web.
     this.store.dispatch(actions.crear({texto: this.txtInput.value}));
     //este reset para limpiar la caja de texto cada vez que se dispare la accion
     this.txtInput.reset();

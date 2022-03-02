@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     ReactiveFormsModule,
     TodoModule,
+    // como hace una conexion con un modulo independiente
    StoreModule.forRoot({ todos: todoReducer }),
    StoreDevtoolsModule.instrument({
     maxAge: 25,
