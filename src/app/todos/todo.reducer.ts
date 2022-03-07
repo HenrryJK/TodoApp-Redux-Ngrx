@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Todo } from './models/todo.model';
-import { crear , toggle } from './todo.actions';
+import { crear , editar, toggle } from './todo.actions';
 
 // el estado inicial va a trabajar con un arreglo de la clase Todo que es un modelo (una clase) por lo tanto se le pone "[]" porque de paso esta vacio
 // export const estadoInicial:Todo[] = [];
@@ -32,7 +32,27 @@ const _todoReducer = createReducer(
 
       });
   }),
+
+  on(editar, (state ,{id , texto}) => {
+    return state.map(todo =>{
+      if (todo.id === id){
+        return{
+          ...todo,
+          texto:texto
+     }
+   }else{
+     // caso contrario de no completarlo , te retorna la tarea , el objeto no cambia se queda tal como estaba.
+     return todo;
+   }
+
+    });
+}),
 );
+
+
+
+
+
 
 export function todoReducer(state, action) {
   return _todoReducer(state , action);

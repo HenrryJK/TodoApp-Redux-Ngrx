@@ -35,6 +35,8 @@ export class TodoItemComponent implements OnInit {
 
   editar(){
     this.editando=true;
+    /// esto es para evitar q se pierda la data por si al momento de editar borramos toda la caja de texto y cuando se vuelve a editar no se pierde la imformacion
+    this.txtInput.setValue(this.todo.texto);
     //este setTimeout es para q el marcador o el punto este tildando ya que el focus no se muestra y todo esto sucede tan rapido que no se esta mostando el elemento cuando ya se esta llamando el focus
     setTimeout(() => {
       //el focus lo que hace es ir a la ultima posicion del texto y que este parpadeando
@@ -45,7 +47,24 @@ export class TodoItemComponent implements OnInit {
 
   }
 
+
   terminarEdicion(){
     this.editando = false;
+// aplicamos una condicion por si al momento de editar una tarea , si borramos todo y esta vacia . Deberia haber una condicion q impida q se dispare la accion si esta vacio.
+// validacion q nos quiere decir que necesita por lo menos un valor o letra para q se pueda guardar los cambios o enviar la accion
+    if (this.txtInput.invalid) {
+      return;
+    }
+    // validacion por si el usuario entro en la edicion de una tarea y no hizo ningun cambio , evita q no dispare ninguna accion.
+    if (this.txtInput.value === this.todo.texto) {
+      return;
+    }
+    /// aqui disparamos esta action editar donde llamamos los dos campos o objetos que seria el id y el texto
+    this.store.dispatch(
+      actions.editar({
+        id:this.todo.id,
+        texto:this.txtInput.value
+      })
+    );
   }
 }
