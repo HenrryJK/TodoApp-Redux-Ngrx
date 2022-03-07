@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Todo } from './models/todo.model';
-import { borrar, crear , editar, toggle } from './todo.actions';
+import { borrar, crear , editar, toggle, toggleAll } from './todo.actions';
 
 // el estado inicial va a trabajar con un arreglo de la clase Todo que es un modelo (una clase) por lo tanto se le pone "[]" porque de paso esta vacio
 // export const estadoInicial:Todo[] = [];
@@ -20,6 +20,13 @@ const _todoReducer = createReducer(
   // donde se llama el "todo" y y dentro de un Kobac donde nos regresa los elementos q cumplan dicha condicion que en este caso es el id.
   // donde le pedimos q nos regrese todos los "todo o tarea" cuyo id sea diferente al id que estoy recibiendo como argumento (excluyendo al que tenga el id q estoy especificando)
   on(borrar,(state, {id}) => state.filter(todo => todo.id !== id)),
+
+  on(toggleAll, (state , {completado}) => state.map(todo => {
+    return{
+      ...todo,
+      completado:completado
+    }
+  })),
   // se usa aqui funcion en llaves porque queremos que nos regrese el state (estado). y el map lo que hace es regresarnos ese nuevo estado (state) o arreglo q contienen esos resultados.
   on(toggle, (state ,{id}) => {
       return state.map(todo =>{
