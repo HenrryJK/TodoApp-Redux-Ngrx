@@ -67,4 +67,10 @@ export class TodoItemComponent implements OnInit {
       })
     );
   }
+
+  //disparamos por medio de un dispacth la accion que creamos en el todo.actions.ts
+  borrar(){
+    this.store.dispatch(actions.borrar({id:this.todo.id}));
+  }
+
 }
