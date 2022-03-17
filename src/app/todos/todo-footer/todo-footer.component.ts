@@ -14,6 +14,7 @@ export class TodoFooterComponent implements OnInit {
   //filtro una variable q contiene un arreglo de todos los arreglos o filtros existentes
   // te permite ademas te permite poder colocar cual de tus filtros debe ir primero y se aplica en la vista
   filtros : actions.filtrosValidos[] = ['todos','completados','pendientes'];
+  pendientes: number =0;
   // importamos el store
   constructor(private store: Store<AppState>) {
 
@@ -21,10 +22,14 @@ export class TodoFooterComponent implements OnInit {
 
   ngOnInit(): void {
     // no subscribimos al store donde se hace un select a los filtros q se han declarado en el Appstate
-    this.store.select('filtro').subscribe(filtro =>
+   // this.store.select('filtro').subscribe(filtro =>
        // console.log(filtro);
-        this.filtroActual = filtro
-    );
+       // this.filtroActual = filtro);
+
+      this.store.subscribe(state =>{
+          this.filtroActual = state.filtro;
+          this.pendientes = state.todos.filter(todo => !todo.completado).length;
+      });
   }
     cambiarFiltro(filtro: actions.filtrosValidos){
        // console.log(filtro);
