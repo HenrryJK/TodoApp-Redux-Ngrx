@@ -1,5 +1,11 @@
 <ul class="todo-list">
-    <app-todo-item *ngFor="let todo of todos"
+  <!-- filtroTodo se le llama desde la clase pipe q sea ha creado.
+
+  Este argumento se le puede usar para poder mandarselo como argumento al pipe
+
+  Lo que hace angular es que cada vez q cambiamos el filtro va ejecutar un ciclo de cambios en los filtros
+  -->
+    <app-todo-item *ngFor="let todo of todos | filtroTodo : filtroActual"
     [todo]="todo"></app-todo-item>
 
 </ul>
