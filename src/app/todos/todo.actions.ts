@@ -5,8 +5,12 @@ export const crear  = createAction(
    props<{texto:string}>()
   );
 
+  export const limpiarTodos  = createAction(
+    '[TODO] Limpiar todos');
+
   // lo que hace el toggle es cambiar el estado de esa tarea , si esta completado a falso y si estaba (no completado) de falso a true
   export const toggle  = createAction(
+
     '[TODO] Toggle todo',
      props<{id:number}>()
     );
