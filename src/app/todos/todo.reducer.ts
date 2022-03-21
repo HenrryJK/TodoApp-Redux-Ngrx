@@ -13,6 +13,7 @@ export const estadoInicial:Todo[] = [
 ];
 const _todoReducer = createReducer(
   estadoInicial,
+  // este limpiarTodos no recibe ningun argumento solo tiene una condicion de aplicar una condicion si encuentra un "todo" sin completar.
   on(limpiarTodos, state => state.filter(todo => !todo.completado)),
   // ...state , lo que hace es extraer y separar  cada uno de los items y regresarlos de manera independiente
   // lo que hace este arreglo [...state, new Todo(texto)] es para retornar un nuevo arreglo , porque siempre tenemos que retornar un nuevo estado , para prevenir la mutacion de ese objeto
